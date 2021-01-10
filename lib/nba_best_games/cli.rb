@@ -15,8 +15,12 @@ class NbaBestGames::CLI
             if input == "1"
                 list_teams
             elsif input == "2"
-                
-           
+                team_info
+            else 
+                puts ""
+                puts "I'm sorry, please choose '1' or '2' to look up a squad"
+                puts ""
+            
             end
 
             input = gets.chomp
@@ -46,6 +50,10 @@ class NbaBestGames::CLI
     end
 
     def team_info
+        puts "Enter the team name here: "
+        gets.chomp
+        team = gets.chomp
+
         puts "#{team.full_name}"
         puts ""
         puts "#{team.division}"
@@ -53,6 +61,8 @@ class NbaBestGames::CLI
         puts "#{team.conference}"
         puts ""
         puts "#{team.abbreviation}"
+
+        start
 
     end
 
