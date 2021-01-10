@@ -1,0 +1,31 @@
+PATH
+  remote: .
+  specs:
+    nba_best_games (0.1.0)
+      nokogiri
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.3)
+    method_source (1.0.0)
+    mini_portile2 (2.5.0)
+    nokogiri (1.11.0)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    racc (1.5.2)
+    rake (12.3.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nba_best_games!
+  pry
+  rake (~> 12.0)
+
+BUNDLED WITH
+   2.1.4
