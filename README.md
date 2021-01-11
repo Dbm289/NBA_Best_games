@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+nba_best_games is a simple CLI designed to help basketball fans find information about their favorite teams. The app provides division, conference, location and scoreboard info about all 30 NBA franchises. Special thanks to Phil, Ashlen Mencia, and Eric Lombardo for helping me out with some sticking points.
 
 ## Development
 

@@ -2,6 +2,7 @@ class NbaBestGames::CLI
 
     def call
         Get.set_teams
+        puts ""
         puts "Welcome my NBA franchise information CLI!"
         puts ""
         puts "To see the full list of teams, hit '1'"
@@ -11,116 +12,63 @@ class NbaBestGames::CLI
         puts "To quit, enter 'exit'."
         input = gets.chomp
 
-        while input != "exit"
+    
             if input == "1"
                 list_teams
             elsif input == "2"
                 team_info
-            else 
-                puts ""
-                puts "I'm sorry, please choose '1' or '2' to look up a squad"
-                puts ""
+            elsif input == "exit"
+                exit
+            else
+                puts "I'm sorry, I didn't get that. Please take another look at the options!"
+                call
             
             end
-
-            input = gets.chomp
-        end
-
-    end
-
-    def list_players
-        
-        player_list = Player.all
-        new_array = player_list.sort { | player_1, player_2 | player_1.name <=> player_2.name }
-        new_array.each_with_index do | player, index | 
-            puts "#{index + 1}. #{player.first_name}"
-        end
 
     end
 
     def list_teams
         #binding.pry
-        team_list = Team.all
+        team_list = Team.all.uniq
         new_array = team_list.sort { | team_1, team_2 | team_1.name <=> team_2.name }
         new_array.each_with_index do | team, index |
             puts "#{index + 1}. #{team.name}"
-          
         end
+        
+        call
+          
+
 
     end
 
     def team_info
         puts "Enter the team name here: "
-        gets.chomp
-        team = gets.chomp
+        user_input = gets.chomp
 
-        puts "#{team.full_name}"
-        puts ""
-        puts "#{team.division}"
-        puts ""
-        puts "#{team.conference}"
-        puts ""
-        puts "#{team.abbreviation}"
-
-        start
-
-    end
-
-    
-    def list_players_on_team
-        puts "Choose your squad:"
-        input = gets.chomp
-        team_name = Team.find_by_name(input)
-        if team_name
-       
-        new_array = team_name.players
-        final_array = new_array.sort { | player_1, player_2 | player_1.name <=> player_2.name }
-        final_array.each_with_index do | player, index | 
-           puts "#{index + 1}. #{player.name}"
+        
+        Team.all.select do | team |
+            if team.name == user_input
+                puts ""
+                puts "They play their home games in #{team.city}"
+                puts "They play in the #{team.division} Division"
+                puts "Which is in the #{team.conference}ern Conference"
+                puts "Their scoreboard abbreviation is #{team.abbreviation}"
+                puts ""
+                puts "Would you like to search another team? Please enter 'Y,' 'N' or 'exit' to quit."
+                second_input = gets.chomp
+                if second_input == "Y"
+                    team_info
+                elsif second_input == "N"
+                    call
+                elsif second_input == "exit" || "Exit"
+                    exit
+                else
+                    puts "I'm sorry, I don't understand. Please select a team to learn more about."
+                    team_info
+                end
+            end
         end
-        else
-            nil
-        end
-
+        
     end
-
-    def player_date
-        puts "Choose a player:"
-        input = gets.chomp
-
-    end
-
-    def team_date
-
-    end
-
-    def player_stats
-
-    end
-
-    #def player_rebounds
-
-    #end
-
-    #def player_assists
-
-    #end
-
-    #def player_blocks
-
-    #end
-
-    #def player_steals
-
-    #end
-
-
-   
-
-
-
-
-
-
 
 end
